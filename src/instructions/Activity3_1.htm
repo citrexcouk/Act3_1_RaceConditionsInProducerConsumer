@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+<title>Activity 3.1 - Race conditions in the producer-consumer problem.</title>
+<link rel="stylesheet" type="text/css" href="../../../../m362.css">
+</head>
+
+<body>
+
+<h1>Activity 3.1 - Race conditions in the producer-consumer problem.</h1>
+
+<h2>Purpose </h2>
+<p>The purpose of this activity is:</p>
+<ul><li>to explore the producer consumer problem using a circular buffer;</li>
+<li>to demonstrate that race conditions can occur unless care is taken to control access to 
+shared data.</li>
+</ul>
+<h3>Note</h3>
+ <p>The code used in this example shows a <b>WRONG</b> solution. </p>
+
+<h2>Materials </h2>
+<p>We have provided a project which has an interface and four classes:</p>
+<ul><li><code>Buffer</code> interface - has two methods, <code>put</code> and <code>get</code>, which can place items in a 
+buffer and take them out.</li>
+<li><code>BufferImpl</code> - to implement the <code>Buffer</code> interface. The actual buffer (<code>buf</code>) is set up 
+as an array of objects, and is capable of holding a number of items. The 
+variables, (<code>in</code>,<code> out</code>,<code> count</code> and <code>size</code>) ensure that items are inserted at the right 
+place in the buffer, and also taken out at the right place. If the buffer is 
+full, the counters are set to point to the beginning of the array, so this effectively 
+implements a 
+circular buffer as discussed in the unit.</li>
+<li><code>Main</code> - sets two threads running: one is a producer process and the other 
+a consumer.</li>
+<li><code> Producer</code> - extends the <code>Thread</code> class. 
+It has a method <code>run</code>, which 
+is public and loops around to put numbers in the buffer. It has a call to  <code>Thread.sleep(100)</code>, which helps to simulate the idea 
+of the producer and consumer working at different speeds.</li>
+<li><code>Consumer</code> - also extends <code>Thread</code>. Similarly, it loops around, 
+now taking objects out of the buffer. It also comes with a facility to simulate the different speeds.</li></ul>
+<h2>Task </h2>
+<p>In this activity you are not required to do any programming, but you will be 
+studying the code, run the program provided and make some observations.</p>
+<h3>Instructions</h3>
+<ol>
+	<li><p>Carefully study class <code>BufferImpl</code> and make sure you understand how the variables 
+<code>in</code>, <code>out</code>, <code>size</code> and <code>count</code> are manipulated in order to create a circular buffer.</p></li>
+	<li><p>Run the project, and observe the output. You should see messages indicating 
+which numbers have been put in the buffer, and which numbers have been taken 
+out.</p></li>
+<li><p>Currently the call to <code>Thread.sleep</code> is set at 100 for both the consumer and the producer. Experiment 
+with the parameter for this method, in order to change the speeds of the consumer and producer.
+You should obtain different effects. </p></li>
+</ol>
+<h3>Questions</h3>
+<ol>
+	<li>
+	<p>Do any exceptions occur? If so, why do you think that is?</p></li>
+	<li>
+	<p>While experimenting with the relative speeds of the consumer and producer, did you notice whether 
+all the numbers are consumed? Do some data items get lost?</p></li>
+	
+</ol>
+
+</body>
+</html>

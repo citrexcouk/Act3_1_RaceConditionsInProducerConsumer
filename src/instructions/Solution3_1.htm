@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+<title>Solution 3.1 - Race conditions in the producer-consumer problem.</title>
+<link rel="stylesheet" type="text/css" href="../../../../m362.css">
+</head>
+
+<body>
+
+<h1>Solution 3.1 - Race conditions in the producer-consumer problem.</h1>
+
+<h3>Answers to Questions</h3>
+<p>You were asked to experiment with different speeds for the producer and the consumer, and 
+depending on these speeds you are likely to have observed the following: 
+<ol>	
+<li><p>When the consumer starts before the producer (or when the consumer is faster than the producer)
+ a <code>NullPointerException</code> may occur in the 
+<code>Consumer</code>. This is an indication that the consumer has tried to read from a location, before 
+any data has been placed there.</p> </li>
+
+<li><p>When the producer is faster than the consumer: the producer has input 
+numbers 10 to 29, but the consumer may have only consumed numbers 20 to 29, for 
+example. This is an indication that the producer overwrites the data before it 
+has had a chance of being consumed: an example of the lost update problem.</p> 
+
+<p>It is also possible that the consumer consumes in an odd order, say from 10, to 19, to 16. 
+In that case there are problems in reading the values of the shared variables 
+<code>in</code>, <code>out</code> and <code>count</code>.</p></li>
+</ol>
+</body>	
+</html>
